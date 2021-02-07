@@ -1,4 +1,4 @@
-package equipment;
+package task3;
 
 abstract public  class Equipment {
 private  String producer;

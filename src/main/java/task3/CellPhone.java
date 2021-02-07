@@ -1,4 +1,4 @@
-package equipment;
+package task3;
 
 public class CellPhone extends Equipment{
 

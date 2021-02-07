@@ -1,4 +1,4 @@
-package equipment;
+package task3;
 
 public class SmartWatch extends Equipment {
     private String strapColor;

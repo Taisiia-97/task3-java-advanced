@@ -1,4 +1,4 @@
-package equipment;
+package task3;
 
 public class Laptop extends Equipment{
     private String dvdDrive;
