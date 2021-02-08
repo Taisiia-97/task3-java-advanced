@@ -2,11 +2,11 @@ package task7;
 
 public class Dish implements Ingredient {
 private Ingredient[] ingredients;
-private  final double DISH_PRICE;
+private   final double dishPrice;
 
     public Dish(Ingredient[] ingredients) {
         this.ingredients = ingredients;
-        DISH_PRICE =countDishPrice();
+        dishPrice =countDishPrice();
     }
 
     @Override
@@ -30,7 +30,7 @@ private double countDishPrice(){
         double dishPrice =0 ;
     for (Ingredient ingredient : ingredients) {
         if(ingredient instanceof Dish){
-            dishPrice+=((Dish) ingredient).getDISH_PRICE();
+            dishPrice+=((Dish) ingredient).getDishPrice();
         }
         if(ingredient instanceof ValuableIngredient){
             dishPrice+=((ValuableIngredient) ingredient).ingredientPrice();
@@ -38,7 +38,9 @@ private double countDishPrice(){
     }return dishPrice;
 }
 
-    public double getDISH_PRICE() {
-        return DISH_PRICE;
+    public  double getDishPrice() {
+        return dishPrice;
     }
+
+
 }

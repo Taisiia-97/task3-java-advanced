@@ -25,7 +25,7 @@ Dish salad = new Dish(new Ingredient[]{new Egg(100,"jaja kurze"),new Tomato(200,
 Dish salad2 = new Dish(new Ingredient[]{salad,new Cheese(50,"ser pleśniowy")});
         System.out.println(salad.calories());
         System.out.println(salad2.calories());
-        System.out.println("Cena dania wynosi: "+salad.getDISH_PRICE());
-        System.out.println(salad2.getDISH_PRICE());
+        System.out.println("Cena dania wynosi: "+salad.getDishPrice());
+        System.out.println(salad2.getDishPrice());
     }
 }

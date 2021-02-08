@@ -26,12 +26,12 @@ package task6;
  */
 public class Task06 {
     public static void main(String[] args) {
-   EmailAddress emailAddress1 = EmailAddress.of("taechka97@lublin.wp.gmail.com");
-       /* System.out.println(emailAddress1.getEmail());
+   EmailAddress emailAddress1 = EmailAddress.of("taechka97@gmail.com");
+        System.out.println(emailAddress1.getEmail());
         System.out.println(emailAddress1.host());
         System.out.println(emailAddress1.userName());
-        System.out.println(emailAddress1.topDomain());*/
-        HumanTemperature temperature = HumanTemperature.of(36.800021);
-        System.out.println(temperature.format());
+        System.out.println(emailAddress1.topDomain());
+        /*HumanTemperature temperature = HumanTemperature.of(36.800021);
+        System.out.println(temperature.format());*/
     }
 }

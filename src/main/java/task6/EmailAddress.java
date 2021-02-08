@@ -4,12 +4,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class EmailAddress {
-    private static final String pattern = "[0-9a-zA-Z][\\dA-z-_.]+@([A-z\\d][A-z\\d-]+\\.){1,6}[A-z]{2,6}";
+    private static final String pattern = "[0-9a-zA-Z][\\dA-z-_.]+@([A-z\\d][A-z\\d-]+\\.){1,6}([A-z]{2,6})";
     private Pattern pattern1 = Pattern.compile(pattern);
     private String email;
+    private Matcher matcher;
+    private String topDomain;
 
     private EmailAddress(String email) {
         this.email = email;
+        matcher = pattern1.matcher(email);
     }
 
     public static EmailAddress of(String email) {
@@ -30,7 +33,9 @@ public class EmailAddress {
     }
 
     public String topDomain() {
-
-        return null;
+while (matcher.find()){
+    topDomain=matcher.group(2);
+}
+        return topDomain;
     }
 }
