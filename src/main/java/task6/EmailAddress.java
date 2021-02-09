@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class EmailAddress {
-    private static final String pattern = "[0-9a-zA-Z][\\dA-z-_.]+@([A-z\\d][A-z\\d-]+\\.){1,6}([A-z]{2,6})";
+    private static final String pattern = "[0-9a-zA-Z][\\dA-z-_.]+@([A-z\\d][A-z\\d-]+\\.){1,6}([A-z]{2,6})$";
     private Pattern pattern1 = Pattern.compile(pattern);
     private String email;
     private Matcher matcher;

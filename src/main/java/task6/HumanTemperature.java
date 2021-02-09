@@ -32,6 +32,6 @@ public class HumanTemperature {
 
     }
     public String format(){
-        return  String.format( "%.2f",humanTemperature);
+        return  String.format( "%.2f",humanTemperature)+"C";
     }
 }
