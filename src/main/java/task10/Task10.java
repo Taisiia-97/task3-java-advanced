@@ -21,8 +21,7 @@ public class Task10 {
      *  Po wykonaniu zadania dopisz testy w osobnej metodzie klasy EmailAddressTest. Metodę nazwij partTwo.
      */
 
-        public static void main(String[] args) {
-
+        public static void main(String[] args) throws IllegalHostException, IllegalUsernameException, IllegalTopDomainException {
 
         }}
 

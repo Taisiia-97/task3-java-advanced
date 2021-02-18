@@ -45,8 +45,9 @@ public class EmailAddress {
         return new EmailAddress(new StringBuilder(username).append("@").append(host).toString());
     }
 
-    private static boolean isValidTopDomain(String host) {
-        String topDomain = extractTopDomain(host);
+
+    private static boolean isValidTopDomain(String input) {
+        String topDomain = extractTopDomain(input);
         return !isNull(topDomain) && !isEmpty(topDomain) && Pattern.matches(patternTopDomain, topDomain);
     }
 
@@ -77,7 +78,8 @@ public class EmailAddress {
                 && hasOneAtSymbol(address)
                 && hasAtLeastOneDotAfterAtSymbol(address)
                 && isValidUsername(extractUsername(address))
-                && isValidHost(extractHost(address));
+                && isValidHost(extractHost(address))
+                &&isValidTopDomain(extractTopDomain(address));
     }
 
     static private String extractUsername(String address){
