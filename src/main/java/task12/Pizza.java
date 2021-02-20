@@ -4,48 +4,36 @@ import java.lang.reflect.Array;
 import java.util.*;
 
 public class Pizza extends Dish implements Ingredient{
-private Set<Ingredient> ingredients ;
+private Map<String,Ingredient> ingredients;
 
     public Pizza(String name) {
         super(name);
-        this.ingredients = new HashSet<>();
+        ingredients = new HashMap<>();
     }
 
-
-    public Set<Ingredient> getIngredients() {
-        Set<Ingredient> copy = new HashSet<>(ingredients);
-        return copy;
+    public Map<String,Ingredient> getIngredients() {
+       return  new HashMap<>(ingredients);
     }
+
 
     public boolean addCake(Cake cake) {
-        for (Ingredient ingredient : ingredients) {
-            if (ingredient instanceof Cake) return false;
-        }
-        ingredients.add(cake);
+        if(ingredients.containsKey("Cake")) return false;
+        ingredients.put("Cake",cake);
         return true;
     }
     public boolean addTomato(Tomato tomato){
-        for (Ingredient ingredient : ingredients) {
-            if (ingredient instanceof Tomato) return false;
-        }
-        ingredients.add(tomato);
+        if(ingredients.containsKey("Tomato")) return false;
+        ingredients.put("Tomato",tomato);
         return true;
     }
     public boolean addCheese(Cheese cheese){
-        for (Ingredient ingredient : ingredients) {
-            if (ingredient instanceof Cheese) return false;
-        }
-        ingredients.add(cheese);
+        if(ingredients.containsKey("Cheese")) return false;
+        ingredients.put("Cheese",cheese);
         return true;
     }
     public boolean isReady(){
-        int counter = 0;
-        for (Ingredient ingredient : ingredients) {
-            if(ingredient instanceof Cake) counter++;
-           else if (ingredient instanceof Cheese) counter++;
-           else if(ingredient instanceof Tomato) counter++;
-        }
-        return counter==3;
+
+      return ingredients.containsKey("Tomato")&& ingredients.containsKey("Cake")&&ingredients.containsKey("Cheese");
 
 
 // return ingredients.size()==3;

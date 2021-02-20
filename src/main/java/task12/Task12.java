@@ -39,9 +39,8 @@ public class Task12 {
       pizza.addCake(new Cake("cake",500));
       pizza.addCheese(new Cheese("blue",100));
       //nie doda sie bo metoda zwraca kopie listy
+        System.out.println(pizza.getIngredients().put("Tomato",tomato));
         System.out.println(pizza.getIngredients());
-        System.out.println(pizza.isReady());
-
 
 
 
