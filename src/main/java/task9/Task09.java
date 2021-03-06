@@ -28,10 +28,12 @@ public class Task09 {
     public static void main(String[] args) {
         GameBoard board = new GameBoard("Anna", "Marek");
         GameBoard.PlayerMark[] players = board.getMarks(); // po wykonaniu zadania zmień typ referencji players
-        GameBoard board1 = new GameBoard(board.getMarks()[0].getName(),"Aneta");
+        GameBoard board1 = new GameBoard("Dominik","Aneta");
         board.markAt(players[0],0,0);
         board.markAt(players[1], 0, 1);
         board.markAt(players[1],0,2 );
+        //przykakład wstawiania 3 gracza do gry
+        board.markAt(board1.getMarks()[0],2,2 );
         System.out.println(board);
 
     }

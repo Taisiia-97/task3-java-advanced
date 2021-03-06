@@ -1,6 +1,6 @@
 package task5;
 
-public class GasCar {
+public final class GasCar {
     private double fuelLevel;
     private final double fuelCapacity;
 
