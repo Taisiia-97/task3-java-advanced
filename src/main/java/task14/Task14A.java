@@ -38,23 +38,38 @@ public class Task14A {
         System.out.println(fourWordCounter());
 
 //zapisujemy wyniki do pliku
-//        File file = new File("c:\\data\\out_task14.txt");
-//        try (FileWriter writer = new FileWriter(file)) {
-//            writer.write(Integer.toString(lineCounter) + " ");
-//            writer.write(Integer.toString(wordCounter) + " ");
-//            writer.write(Integer.toString(word4Counter) + " ");
-//            wordsFourLength.stream().forEach(word -> {
-//                try {
-//                    writer.write(word + "\n");
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            });
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        File file = new File("c:\\data\\out_task14.txt");
+        try (FileWriter writer = new FileWriter(file)) {
+            writer.write(Integer.toString(lineCounter(new FileReader("c:\\data\\task14.txt"))) + " ");
+            writer.write(Integer.toString(wordCounter(new FileReader("c:\\data\\task14.txt"))) + " ");
+            writer.write(Integer.toString(fourWordCounter()) + " ");
+            wordList().stream().forEach(word -> {
+                try {
+                    writer.write(word + "\n");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+    }
+  //metoda zwracająca liste słow 4-literowych
+    public static List<String> wordList(){
+        List<String> words = new ArrayList<>();
+        String line;
+        try (BufferedReader reader = new BufferedReader(new FileReader("c:\\data\\task14.txt"))) {
+            while ((line = reader.readLine()) != null) {
+                Arrays.stream(line.split(" ")).filter(l -> l.length() == 4 && l.matches("\\w+")).forEach(element->words.add(element));
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Nie ma takiego pliku");
+        } catch (IOException e) {
+            System.out.println("Błąd odczytu");
+        }
 
+        return words;
     }
 
     //metoda licząca ilość słow w pliku
