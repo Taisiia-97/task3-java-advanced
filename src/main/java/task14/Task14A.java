@@ -2,6 +2,9 @@ package task14;
 
 import java.io.*;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -39,6 +42,7 @@ public class Task14A {
 
 //zapisujemy wyniki do pliku
         File file = new File("c:\\data\\out_task14.txt");
+      
         try (FileWriter writer = new FileWriter(file)) {
             writer.write(Integer.toString(lineCounter(new FileReader("c:\\data\\task14.txt"))) + " ");
             writer.write(Integer.toString(wordCounter(new FileReader("c:\\data\\task14.txt"))) + " ");
