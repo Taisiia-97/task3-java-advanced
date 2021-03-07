@@ -1,9 +1,7 @@
-package task14;
+package task14.task14B;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class Menu {
     private  List<MenuItem> menuItems;

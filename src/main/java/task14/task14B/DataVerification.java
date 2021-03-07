@@ -1,4 +1,4 @@
-package task14;
+package task14.task14B;
 
 public final class DataVerification {
     private static final String namePattern = "[A-Z][a-z]+\\s*";

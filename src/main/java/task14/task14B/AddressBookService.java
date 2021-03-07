@@ -1,14 +1,14 @@
-package task14;
+package task14.task14B;
+
+import task14.task14B.AddressItem;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AddressBookService {
     private static File addressBook = new File("c:\\data\\AddressBook.txt");
-    private static List<AddressItem> book = new ArrayList<>();
+
 
 
     private AddressBookService() {
@@ -16,10 +16,11 @@ public class AddressBookService {
     }
 
     public static void addAddress(AddressItem addressItem) {
-        book.add(addressItem);
-        try (ObjectOutputStream outputstream = new ObjectOutputStream(new FileOutputStream(addressBook))) {
-            outputstream.writeObject(book);
-            outputstream.close();
+        List<AddressItem> items = getItems();
+        items.add(addressItem);
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(addressBook))) {
+            out.writeObject(items);
+            out.close();
         } catch (FileNotFoundException e) {
             System.out.println("Nie ma takiego pliku");
         } catch (IOException e) {
@@ -29,42 +30,50 @@ public class AddressBookService {
     }
 
     public static void removeAddress(AddressItem addressItem) {
-        if (book.contains(addressItem)) {
-            book.remove(addressItem);
+        List<AddressItem> items = getItems();
+        if (items.contains(addressItem)) {
+            items.remove(addressItem);
             try {
                 ObjectOutputStream in = new ObjectOutputStream(new FileOutputStream(addressBook));
-                in.writeObject(book);
+                in.writeObject(items);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+        else {
+            System.out.println("Podany przez ciebie kontakt nie istnieje w bazie");
+        }
 
     }
 
-    public static void addressBook() {
+    public static void bookContent() {
         try {
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(addressBook));
             List<AddressItem> items = (ArrayList) in.readObject();
-            System.out.println(items);
+            if(items!=null) {
+                items.stream().forEach(System.out::println);
+            }
+            else {
+                System.out.println("Plik jest pusty");
+            }
             in.close();
 
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Plik jest pusty");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Nie znaleziono klasy");
         }
+
     }
 
 
     public static void findAddress(String input) {
-        try {
-            ObjectInputStream in = new ObjectInputStream(new FileInputStream(addressBook));
-            List<AddressItem> items = (ArrayList) in.readObject();
+        List<AddressItem> items = getItems();
             for (AddressItem item : items
             ) {
                 if (item.getName().equals(input) || item.getFullName().equals(input) ||
@@ -73,16 +82,24 @@ public class AddressBookService {
                 }
 
             }
-            in.close();
 
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        } catch (IOException e) {
-            System.out.println("Koniec pliku");
-            ;
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+
     }
+private static List<AddressItem> getItems(){
+        List<AddressItem> items = new ArrayList<>();
+    try {
+        ObjectInputStream in = new ObjectInputStream(new FileInputStream(addressBook));
+         items = (ArrayList) in.readObject();
+        in.close();
+return items;
 
+    } catch (FileNotFoundException e) {
+        e.printStackTrace();
+    } catch (IOException e) {
+
+    } catch (ClassNotFoundException e) {
+        System.out.println("Nie znaleziono klasy");
+    }
+        return new ArrayList<>();
+}
 }
