@@ -38,5 +38,16 @@ private static final long serialVersionId =  2153163831931434056L;
     public LocalDate getBirthDate() {
         return birthDate;
     }
+
+    @Override
+    public String toString() {
+        return
+                "name='" + name + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", birthDate=" + birthDate +
+                '}';
+    }
 }
 
