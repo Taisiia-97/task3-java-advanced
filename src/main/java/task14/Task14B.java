@@ -72,7 +72,7 @@ public class Task14B {
 
         });
         removeAddress.setCallback(() -> {
-
+//AddressBookService.removeAddress();
         });
         bookContent.setCallback(() -> {
             AddressBookService.addressBook();

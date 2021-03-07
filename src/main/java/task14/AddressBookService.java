@@ -18,11 +18,8 @@ public class AddressBookService {
     public static void addAddress(AddressItem addressItem) {
         book.add(addressItem);
         try (ObjectOutputStream outputstream = new ObjectOutputStream(new FileOutputStream(addressBook))) {
-            for (AddressItem item : book) {
-                outputstream.writeObject(item);
-            }
-
-
+            outputstream.writeObject(book);
+            outputstream.close();
         } catch (FileNotFoundException e) {
             System.out.println("Nie ma takiego pliku");
         } catch (IOException e) {
@@ -32,41 +29,57 @@ public class AddressBookService {
     }
 
     public static void removeAddress(AddressItem addressItem) {
-
+        if (book.contains(addressItem)) {
+            book.remove(addressItem);
+            try {
+                ObjectOutputStream in = new ObjectOutputStream(new FileOutputStream(addressBook));
+                in.writeObject(book);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
     }
 
     public static void addressBook() {
         try {
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(addressBook));
-            Object addressItem;
-            while ((addressItem = in.readObject()) != null) {
-                addressItem = (AddressItem) addressItem;
-                System.out.println(addressItem);
-            }
+            List<AddressItem> items = (ArrayList) in.readObject();
+            System.out.println(items);
+            in.close();
 
-        } catch (Exception e) {
-            System.err.println("Konic pliku");
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
-
     }
+
 
     public static void findAddress(String input) {
         try {
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(addressBook));
-            Object addressItem;
-            while ((addressItem = in.readObject()) != null) {
-                if (((AddressItem) addressItem).getName().equals(input)
-                        || ((AddressItem) addressItem).getFullName().equals(input)
-                        || ((AddressItem) addressItem).getEmailAddress().equals(input)
-                        || ((AddressItem) addressItem).getPhoneNumber().equals(input)) {
-                    System.out.println((AddressItem)addressItem);
+            List<AddressItem> items = (ArrayList) in.readObject();
+            for (AddressItem item : items
+            ) {
+                if (item.getName().equals(input) || item.getFullName().equals(input) ||
+                        item.getEmailAddress().equals(input) || item.getPhoneNumber().equals(input)) {
+                    System.out.println(item);
                 }
+
             }
+            in.close();
+
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
-            System.out.println("Koniec pliku");;
+            System.out.println("Koniec pliku");
+            ;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
