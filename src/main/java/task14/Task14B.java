@@ -78,7 +78,9 @@ public class Task14B {
             AddressBookService.addressBook();
         });
         findAddress.setCallback(() -> {
-
+            System.out.println("Podaj numer telefonu, email lub imie");
+            String input = scanner.nextLine();
+            AddressBookService.findAddress(input);
         });
 
         Menu menu = new Menu(new ArrayList<>(Arrays.asList(addAddress, removeAddress, bookContent, findAddress, exit)));

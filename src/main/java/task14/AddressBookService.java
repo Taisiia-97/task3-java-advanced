@@ -16,12 +16,11 @@ public class AddressBookService {
     }
 
     public static void addAddress(AddressItem addressItem) {
-       book.add(addressItem);
+        book.add(addressItem);
         try (ObjectOutputStream outputstream = new ObjectOutputStream(new FileOutputStream(addressBook))) {
             for (AddressItem item : book) {
                 outputstream.writeObject(item);
             }
-
 
 
         } catch (FileNotFoundException e) {
@@ -39,21 +38,38 @@ public class AddressBookService {
 
     public static void addressBook() {
         try {
-            FileInputStream fileIn = new FileInputStream(addressBook);
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            Object adressItem;
-           while ( (adressItem =in.readObject())!=null){
-adressItem = (AddressItem) adressItem;
-               System.out.println(adressItem);
-           }
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream(addressBook));
+            Object addressItem;
+            while ((addressItem = in.readObject()) != null) {
+                addressItem = (AddressItem) addressItem;
+                System.out.println(addressItem);
+            }
 
         } catch (Exception e) {
-            System.err.println("Nie udało sie");
+            System.err.println("Konic pliku");
         }
 
     }
 
     public static void findAddress(String input) {
-
+        try {
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream(addressBook));
+            Object addressItem;
+            while ((addressItem = in.readObject()) != null) {
+                if (((AddressItem) addressItem).getName().equals(input)
+                        || ((AddressItem) addressItem).getFullName().equals(input)
+                        || ((AddressItem) addressItem).getEmailAddress().equals(input)
+                        || ((AddressItem) addressItem).getPhoneNumber().equals(input)) {
+                    System.out.println((AddressItem)addressItem);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Koniec pliku");;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
+
 }
