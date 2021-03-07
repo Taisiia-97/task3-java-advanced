@@ -3,7 +3,7 @@ package task14;
 
 import java.io.IOException;
 
-public class MenuItem {
+public final class MenuItem {
     private String label;
     private int number;
      Callback callback;
