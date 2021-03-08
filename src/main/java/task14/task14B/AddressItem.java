@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class AddressItem implements Serializable {
-    final String name;
+    final  String name;
     final String fullName;
     final String emailAddress;
     final String phoneNumber;

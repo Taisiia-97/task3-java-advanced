@@ -1,13 +1,15 @@
 package task14.task14B;
 
-import task14.task14B.AddressItem;
+
 
 import java.io.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class AddressBookService {
-    private static File addressBook = new File("c:\\data\\AddressBook.txt");
+
+    private final static File addressBook = new File("c:\\data\\AddressBook.txt");
 
 
 
@@ -86,7 +88,7 @@ public class AddressBookService {
 
     }
 private static List<AddressItem> getItems(){
-        List<AddressItem> items = new ArrayList<>();
+        List<AddressItem> items;
     try {
         ObjectInputStream in = new ObjectInputStream(new FileInputStream(addressBook));
          items = (ArrayList) in.readObject();
