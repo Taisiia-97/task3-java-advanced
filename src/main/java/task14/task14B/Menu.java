@@ -37,6 +37,6 @@ public class Menu {
             System.out.println("Musisz wpisać liczbę ");
             return false;
         }
-        return false;
+      return false;
     }
 }

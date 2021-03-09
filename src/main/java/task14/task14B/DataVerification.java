@@ -1,8 +1,8 @@
 package task14.task14B;
 
 public final class DataVerification {
-    private static final String namePattern = "[A-Z][a-z]+\\s*";
-    private static final String fullNamePattern = "[A-Z][a-z]+\\s*";
+    private static final String namePattern = "[A-Z]\\w+\\s*";
+    private static final String fullNamePattern = "[A-Z]\\w+\\s*";
     private static final String emailAddressPattern = "[0-9a-zA-Z][\\dA-z-_.]+@([A-z\\d][A-z\\d-]+\\.){1,6}([A-z]{2,6})$";
     private static final String phoneNumberPattern = "\\d{3}\\s?\\d{3}\\s?\\d{3}\\s?";
 

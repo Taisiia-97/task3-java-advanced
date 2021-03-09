@@ -6,11 +6,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
-public class LoadData implements Load<AddressItem> {
+public class ConsoleLoadData implements Load<AddressItem> {
 
     private static Scanner in = new Scanner(System.in);
 
-    public LoadData() {
+    public ConsoleLoadData() {
     }
 
     @Override
