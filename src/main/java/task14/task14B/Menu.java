@@ -29,6 +29,7 @@ public class Menu {
         int command;
         try{
           command =  Integer.parseInt(input);
+
             for (MenuItem menuItem : menuItems) {
                 if(menuItem.getNumber()==command) return true;
             }

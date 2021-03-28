@@ -1,4 +1,4 @@
-package task15;
+package task15.task15a;
 
 import java.util.stream.Stream;
 
